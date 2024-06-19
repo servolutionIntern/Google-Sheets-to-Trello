@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Custom Power-Up</title>
+  <script src="https://p.trellocdn.com/power-up.min.js"></script>
+  <script>
+    TrelloPowerUp.initialize({
+      'card-buttons': function(t, options) {
+        return [{
+          icon: 'https://yourserver.com/images/icon.png',
+          text: 'Create Card',
+          callback: function(t) {
+            return t.popup({
+              title: 'Create a New Card',
+              url: 'https://yourserver.com/create-card.html',
+              height: 184
+            });
+          }
+        }];
+      }
+    });
+  </script>
+</head>
+<body>
+</body>
+</html>
