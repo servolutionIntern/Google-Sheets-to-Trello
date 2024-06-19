@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Create Trello Card</title>
+  <script src="https://p.trellocdn.com/power-up.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    input, textarea {
+      width: 100%;
+      margin-bottom: 10px;
+      padding: 10px;
+    }
+    button {
+      padding: 10px;
+      background-color: #0079bf;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #005b99;
+    }
+  </style>
+  <script>
+    var t = TrelloPowerUp.iframe();
+
+    function createCard() {
+      var cardName = document.getElementById('cardName').value;
+      var cardDesc = document.getElementById('cardDesc').value;
+
+      t.get('board', 'private', 'apiKey')
+        .then(function(apiKey) {
+          return t.get('board', 'private', 'apiToken')
+            .then(function(apiToken) {
+              return t.board('id')
+                .then(function(board) {
+                  return t.list('id')
+                    .then(function(list) {
+                      var payload = {
+                        name: cardName,
+                        desc: cardDesc,
+                        idList: list.id,
+                        keepFromSource: 'all',
+                        key: apiKey,
+                        token: apiToken
+                      };
+
+                      return fetch('https://api.trello.com/1/cards', {
+                        method: 'POST',
+                        headers: {
+                          'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(payload)
+                      });
+                    });
+                });
+            });
+        })
+        .then(function(response) {
+          return response.json();
+        })
+        .then(function(data) {
+          console.log('Card created successfully:', data);
+          t.closePopup();
+        })
+        .catch(function(error) {
+          console.error('Error creating card:', error);
+        });
+    }
+
+    t.render(function() {
+      t.sizeTo('#content').done();
+    });
+  </script>
+</head>
+<body>
+  <div id="content">
+    <h3>Create a New Trello Card</h3>
+    <input type="text" id="cardName" placeholder="Card Name" required />
+    <textarea id="cardDesc" placeholder="Card Description" required></textarea>
+    <button onclick="createCard()">Create Card</button>
+  </div>
+</body>
+</html>
