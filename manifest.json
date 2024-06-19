@@ -1,0 +1,23 @@
+{
+  "manifestVersion": 1,
+  "name": "My Custom Power-Up",
+  "description": "A Trello Power-Up created for demo purposes",
+  "author": "Your Name",
+  "icon": {
+    "url": "https://yourserver.com/images/icon.png",
+    "height": 32,
+    "width": 32
+  },
+  "capabilities": [
+    "card-buttons",
+    "card-detail-badges"
+  ],
+  "connectors": {
+    "iframe": {
+      "url": "https://yourserver.com/iframe-connector.html"
+    }
+  },
+  "app": {
+    "secret": "your-secret"
+  }
+}
