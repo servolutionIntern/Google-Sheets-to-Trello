@@ -1,8 +1,8 @@
 {
   "manifestVersion": 1,
-  "name": "My Custom Power-Up",
+  "name": "Google Sheets to Trello",
   "description": "A Trello Power-Up created for demo purposes",
-  "author": "Your Name",
+  "author": "Henry and ChatGPT",
   "icon": {
     "url": "https://yourserver.com/images/icon.png",
     "height": 32,
@@ -14,7 +14,7 @@
   ],
   "connectors": {
     "iframe": {
-      "url": "https://yourserver.com/iframe-connector.html"
+      "url": "https://servolutionIntern.github.io/Google-Sheets-to-Trello/iframe-connector.html"
     }
   },
   "app": {
